@@ -2,6 +2,11 @@ FROM nixpkgs/nix:nixos-23.11
 
 ENV PATH=/root/.nix-profile/bin:/usr/bin:/bin
 
+# Apple Silicon: under x86_64 emulation the emulated kernel can't load Nix's
+# seccomp BPF syscall filter ("unable to load seccomp BPF program"). The
+# container is already an isolated sandbox, so disabling the filter is safe.
+ENV NIX_CONFIG="filter-syscalls = false"
+
 RUN <<EOF
     set -euo pipefail
     nix-env -iA cachix -f https://cachix.org/api/v1/install
