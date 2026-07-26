@@ -323,6 +323,32 @@
 };
 
 /* Automatically generated combos definitions */
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        // Tab-family combos: index+middle pinch on the right hand, row = action.
+        // Base layer only (layer 0) so they don't fire on Lower/Magic.
+        combo_tab {                    // J + K (home row)  -> Tab
+            timeout-ms = <45>;
+            key-positions = <41 42>;
+            bindings = <&kp TAB>;
+            layers = <0>;
+        };
+        combo_ctrl_tab {               // U + I (top row)   -> Ctrl+Tab (next tab in app)
+            timeout-ms = <45>;
+            key-positions = <29 30>;
+            bindings = <&kp LC(TAB)>;
+            layers = <0>;
+        };
+        combo_app_switch_back {        // M + , (bottom row)-> Cmd+Shift+Tab (app switcher <-)
+            timeout-ms = <45>;
+            key-positions = <59 60>;
+            bindings = <&kp LG(LS(TAB))>;
+            layers = <0>;
+        };
+    };
+};
 
 
 /* Automatically generated keymap */
